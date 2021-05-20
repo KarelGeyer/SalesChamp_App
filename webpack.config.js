@@ -1,45 +1,88 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
+'use strict';
 
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path');
+const merge = require('webpack-merge');
 
-const isProduction = process.env.NODE_ENV == 'production';
+const webpackCommon = {
+  entry: {
+    app: ['./app/initialize']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader?presets[]=es2015'
+          }
+        ]
+      },
+      {
+        test: /\.jst$/,
+        use: {
+          loader: 'underscore-template-loader'
+        }
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
+      }
+    ]
+  },
+  output: {
+    filename: 'app.js',
+    path: path.join(__dirname, './public'),
+    publicPath: '/'
+  },
+  plugins: [
+    new ExtractTextPlugin('app.css'),
+    new CopyWebpackPlugin([{
+      from: './app/assets/index.html',
+      to: './index.html'
+    }]),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      _: 'underscore'
+    }),
 
-
-const config = {
-    entry: './app/app.js',
-    
-    output: {
-        filename: "index.js",
-        path: path.resolve(__dirname, 'dist'),
-    },
-    devServer: {
-        open: true,
-        host: 'localhost',
-        contentBase: './dist',
-        port: 3000,
-    },
-    plugins: [
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/i,
-                loader: 'babel-loader',
-            },
-            {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
-            },
-        ],
-    },
+  ],
+  resolve: {
+    modules: [
+      path.join(__dirname, './node_modules'),
+      path.join(__dirname, './app')
+    ]
+  },
+  resolveLoader: {
+    modules: [
+      path.join(__dirname, './node_modules')
+    ]
+  }
 };
 
-module.exports = () => {
-    if (isProduction) {
-        config.mode = 'production';
-        
-    } else {
-        config.mode = 'development';
-    }
-    return config;
-};
+switch (process.env.npm_lifecycle_event) {
+  case 'start':
+  case 'dev':
+    module.exports = merge(webpackCommon, {
+      devtool: '#inline-source-map',
+      devServer: {
+        contentBase: path.join(__dirname, 'public'),
+        compress: true,
+        port: 9000
+      }
+    });
+    break;
+  default:
+    module.exports = merge(webpackCommon, {
+      devtool: 'source-map'
+    });
+    break;
+}

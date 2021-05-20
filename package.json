@@ -1,48 +1,48 @@
 {
   "name": "my-webpack-project",
-  "version": "1.0.0",
   "description": "My webpack project",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production --node-env=production",
-    "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
-    "watch": "webpack --watch",
-    "serve": "webpack serve",
-    "start": "webpack serve --open"
-  },
+  "author": "Karel Geyer",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KarelGeyer/SalesChamp_Introduction.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/KarelGeyer/SalesChamp_Introduction/issues"
-  },
   "homepage": "https://github.com/KarelGeyer/SalesChamp_Introduction#readme",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "prebuild": "rm -rf ./public/",
+    "build": "npm run lint && webpack -p",
+    "lint": "eslint app",
+    "test": "echo test"
+  },
   "dependencies": {
-    "backbone": "^1.4.0",
+    "babel": "^6.23.0",
+    "backbone": "~1.3.3",
+    "backbone.marionette": "^3.0.0",
     "bootstrap": "^5.0.1",
-    "gh-pages": "^3.1.0",
-    "handlebars": "^4.7.7",
-    "jquery": "^3.6.0",
-    "marionette": "^5.0.0-alpha.2",
-    "underscore": "^1.13.1"
+    "bootstrap-icons": "^1.5.0",
+    "bootstrap-sass": "^3.4.1",
+    "bootstrap-scss": "^4.6.0",
+    "jquery": "~1.12.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.3",
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.2",
-    "@webpack-cli/generators": "^2.1.0",
-    "babel-loader": "^8.2.2",
+    "babel-core": "^6.7.6",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "copy-webpack-plugin": "^1.1.1",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.11.1",
+    "extract-text-webpack-plugin": "^2.0.0-rc.2",
     "html-webpack-plugin": "^5.3.1",
     "sass": "^1.32.13",
     "sass-loader": "^11.1.1",
-    "webpack": "^5.37.0",
-    "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2"
+    "style-loader": "^0.13.1",
+    "stylus": "^0.54.5",
+    "underscore-template-loader": "^0.7.2",
+    "webpack": "^2.7.0",
+    "webpack-dev-server": "^2.2.1",
+    "webpack-merge": "^2.6.1"
   }
 }
