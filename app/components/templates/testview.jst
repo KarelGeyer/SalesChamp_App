@@ -1,4 +1,10 @@
-    <h1 class="test">This is test template h1</h1>
-    <p class="test"> this is a test template text</p>
-    <button id="bttn"> click here </button>
-
+    <button> click here </button>
+    <div> <%- neco %> </div>
+    <% _.each(neco, function(item) {%>
+        <div> <%- item %>  </div>
+<% }) %>
+     
+            <% _.each(data, function(item) {%>
+                <div> <%- item%>  </div>
+        <% }) %>
+  

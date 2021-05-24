@@ -11567,4 +11567,10 @@ section #searchbar #search-button {
   border: none;
   outline: none;
 }
+
+.test {
+  margin-top: 50px;
+  width: 500px;
+  height: 50vh;
+}
 /*# sourceMappingURL=main.css.map */
