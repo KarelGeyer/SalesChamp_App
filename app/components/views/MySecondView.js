@@ -26,7 +26,7 @@ export default Marionette.View.extend({
         const searchValue = e.target.value
     },
     initialize: function () {
-        console.log(this.model)
+        
     },
     
 })

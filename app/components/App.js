@@ -5,6 +5,8 @@ import testView from "./views/TestView"
 import form from "./views/FormView"
 import $ from "jquery"
 import _ from 'underscore';
+import Router from "./Router"
+import Backbone from 'backbone';
 
 
 export default Marionette.Application.extend({
@@ -12,17 +14,16 @@ export default Marionette.Application.extend({
 
   onStart() {
     /**VARIABLES */
-    const header = new HeaderView()
+    // const header = new HeaderView()
+    new Router()
 
     /**RENDERS */
-    header.render()
-    mysecondView.render()
-    form.render()
-    testView.render()
-    
+    // header.render()
+ 
     /**FUNCTION */
-    $('#app').append(header.$el)
-    $('#app').append(testView.$el)
+    // $('#app').append(header.$el)
+    // $('#app').append(testView.$el)
+    Backbone.history.start()
   }
 });
 

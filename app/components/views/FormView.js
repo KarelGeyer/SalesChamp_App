@@ -2,8 +2,7 @@ import _ from "underscore"
 import Marionette from "backbone.marionette"
 import Backbone from "backbone"
 import template from "../templates/formTemplate.jst"
-import mysecondView from "../models/mainModel"
-
+import testView from "../views/TestView"
 
 const FormModel = Backbone.Model.extend({
     default: {
@@ -50,8 +49,8 @@ const Form = Marionette.View.extend({
     },
     goBack: function(){
         this.$el.remove()
-        $('#app').append(mysecondView.$el)
-    },
+        $('#app').append(testView.$el)
+    } 
 })
 
 const form = new Form()
