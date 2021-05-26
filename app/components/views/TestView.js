@@ -77,6 +77,7 @@ const TestView = Marionette.View.extend({
 })
 
 const testView = new TestView({
-
+    
 })
+
 export default testView

@@ -1,0 +1,51 @@
+
+<div class="acordion adress-row" id="accordionSection"> 
+        <div class="acordion-item ults">
+            <h3 class="accordion-header">
+                <button type="button" class="accordion-button" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#<%- status %><%- id %>">
+                    <%- city %>, <%- street %> 
+                </button>
+            </h3>
+            <% if(status === "NT") {%> 
+                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+                    <button type="button" class="accordion-body">
+                        <div class="itemWrapper">
+                            <%- number %> 
+                            <div class="statusNt">
+                                <p>
+                                    NT
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            <% } else if (status === "OVK") {%> 
+                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+                    <button type="button" class="accordion-body">
+                        <div class="itemWrapper">
+                            <%- number %> 
+                            <div class="statusOvk">
+                                <p>
+                                    OVK
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            <% } else {%>
+                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+                    <button type="button" class="accordion-body">
+                        <div >
+                            <%- number %> 
+                            <div>
+                                
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            <% }%>
+        </div>
+</div>

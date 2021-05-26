@@ -3,8 +3,10 @@ import Marionette from "backbone.marionette"
 import Backbone from "backbone"
 import template from "../templates/formTemplate.jst"
 import testView from "../views/TestView"
+import Router from "../Router"
 
 const FormModel = Backbone.Model.extend({
+    url: 'https://introduction-api.do.saleschamp.io/introduction-api/items/address',
     default: {
         id: "",
         status: "",
@@ -14,14 +16,16 @@ const FormModel = Backbone.Model.extend({
         name: "",
         email: "",
         city: ""
+    },
+    parse: function(data){
+        return data.data
     }
 })
 
 const formModel = new FormModel()
 
-const Form = Marionette.View.extend({
+const FormView = Marionette.View.extend({
     tagName: "div", 
-    className: "test",
     model: formModel,
     template,
     ui: {
@@ -35,24 +39,33 @@ const Form = Marionette.View.extend({
         "click @ui.save": "patch"
     },
     patch: function(e){
+    
         this.model.set("name", $("#name").val())
         this.model.set("e-mail", $("#e-mail").val()) 
-        console.log(this.model.attributes) 
-        this.model.put(this.model,{
-            success: function(res){
-                console.log(res)
-            },
-            error: function(err){
-                console.log(err)
-            } 
+        console.log(this.model)
+        const filteredUrl = _.each(Object.keys(this.model.attributes), function(item){
+            return item
         })
+        console.log(filteredUrl)
+        // this.model.save(this.model,{
+        //     success: function(res){
+        //         console.log(res)
+        //     },
+        //     error: function(err){
+        //         console.log(err)
+        //     } 
+        // })
     },
     goBack: function(){
-        this.$el.remove()
-        $('#app').append(testView.$el)
-    } 
+        const router = new Router()
+        router.navigate("/", {trigger: true})
+    }, 
+    
+    initialize: function(){
+        console.log()
+    }
 })
 
-const form = new Form()
 
-export default form
+
+export default FormView

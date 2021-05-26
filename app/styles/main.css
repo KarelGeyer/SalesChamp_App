@@ -11465,8 +11465,9 @@ fieldset:disabled .btn {
   }
 }
 
-/**** Variables ****/
+/**** General Variables ****/
 /**** Colors *****/
+/**** Breakpoints ****/
 /**** Reset ****/
 * {
   margin: 0;
@@ -11488,12 +11489,12 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  font-family: "Montserrat";
 }
 
 /**** Header ****/
 header {
-  height: 170px;
-  border: 1px solid black;
+  height: 190px;
   background-color: #009cb8;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11509,7 +11510,7 @@ header {
 
 header h1, header .h1 {
   padding-left: 18px;
-  color: white;
+  color: #fff;
   font-size: 2.5rem;
   font-weight: bold;
 }
@@ -11518,7 +11519,6 @@ header div {
   -ms-flex-item-align: center;
       align-self: center;
   width: 95%;
-  border: 1px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11532,7 +11532,7 @@ header button {
   width: 48%;
   border: none;
   border-radius: 5px;
-  background-color: white;
+  background-color: #EEE;
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -11561,16 +11561,189 @@ section #searchbar #searchbarInput {
 }
 
 section #searchbar #search-button {
-  background-color: white;
+  background-color: #fff;
   width: 5%;
   height: 3rem;
   border: none;
   outline: none;
 }
 
-.test {
-  margin-top: 50px;
-  width: 500px;
-  height: 50vh;
+section #adressWrap .accordion-header {
+  background-color: #ECECEC;
+  color: white;
+}
+
+section #adressWrap .accordion-header:active {
+  background-color: #009CB8;
+}
+
+section #adressWrap .accordion-body {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: #FCFAED;
+}
+
+section #adressWrap .accordion-body:focus {
+  background-color: #FFD800;
+}
+
+section #adressWrap .accordion-body .itemWrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section #adressWrap .accordion-body .itemWrapper .statusNt {
+  height: 30px;
+  width: 60px;
+  background-color: #FB9449;
+  text-align: center;
+  padding-top: 5px;
+}
+
+section #adressWrap .accordion-body .itemWrapper .statusOvk {
+  height: 30px;
+  width: 60px;
+  background-color: #3AAA35;
+  text-align: center;
+  padding-top: 5px;
+}
+
+section #adressWrap .accordion-body .itemWrapper p {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+/**** Form ****/
+#formView {
+  width: 100%;
+  display: block;
+}
+
+.mainWrapper {
+  border: 1px solid black;
+  min-height: 300px;
+  height: 70vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 15px 25px 25px 25px;
+}
+
+.mainWrapper .form-wrapper {
+  border: 1px solid black;
+  height: 180px;
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.mainWrapper .form-wrapper .label {
+  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.mainWrapper .form-wrapper .label input {
+  width: 65%;
+  height: 50px;
+}
+
+.mainWrapper .buttons-wrapper .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.mainWrapper .buttons-wrapper .buttons button {
+  height: 50px;
+  width: 110px;
+  border: none;
+  border-radius: 2px;
+  font-size: large;
+  font-weight: 900;
+}
+
+.mainWrapper .buttons-wrapper .buttons .btn-secondary {
+  background-color: #EEE;
+  color: #000;
+}
+
+.mainWrapper .buttons-wrapper .buttons .btn-primary {
+  background-color: #027489;
+}
+
+/**** responsive****/
+@media only screen and (max-width: 380px) {
+  header {
+    height: 220px;
+  }
+  header h1, header .h1 {
+    font-size: 1.6rem;
+    font-weight: bolder;
+    width: 70%;
+  }
+  header #button-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 110px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  header #button-wrapper button {
+    height: 50px;
+    width: 100%;
+    border: none;
+    border-radius: 2px;
+    background-color: #EEE;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 }
 /*# sourceMappingURL=main.css.map */

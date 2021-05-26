@@ -1,12 +1,25 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
-/**** Variables ****/
-$maxWidth: 800px;
+/**** General Variables ****/
+$max-width: 800px;
 
 /**** Colors *****/
-$white: rgb(255,255,255);
+$background--primary: #027489;
+$background--secondary: #009CB8;
+$row--even: #ECECEC;
+$row--active: #009CB8;
+$address--column: #FCFAED;
+$address--active: #FFD800;
+$button--primary: #027489;
+$button--secondary: #EEE;
+$button--disabled: #999999;
+$label--nt: #FB9449;
+$label--ovk: #3AAA35;
 $blue: rgb(0,156,184);
 
+/**** Breakpoints ****/
+$sm: 380px ;
+$m: 550px;
 
 /**** Reset ****/
 * {
@@ -24,13 +37,13 @@ $blue: rgb(0,156,184);
 body {
     display: flex;
     justify-content: center;
+    font-family: "Montserrat";
 }
 
 /**** Header ****/
 
 header {
-    height: 170px;
-    border: 1px solid black;
+    height: 190px;
     background-color: $blue;
     display: flex;
     flex-direction: column;
@@ -46,7 +59,6 @@ header {
     div {
         align-self: center;
         width: 95%;
-        border: 1px solid black;
         display: flex;
         justify-content: space-between;
     }
@@ -56,45 +68,195 @@ header {
         width: 48%;
         border: none;
         border-radius: 5px;
-        background-color: $white;
+        background-color: $button--secondary;
         font-size: 1.5rem;
         font-weight: bold;
     }
 }
 
 /**** Results ****/
-
 section {
-
     #searchbar {
-            height: 3rem;
-            width: 100%;
-            display: flex;
-
-            justify-content: space-between;
-            align-items: center;
-            padding:0 15px 0 15px;
+        height: 3rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 15px 0 15px;
 
         #searchbarInput {
-                border: none;
-                outline: none;
-                height: 90%;
-                width: 95%;
+            border: none;
+            outline: none;
+            height: 90%;
+            width: 95%;
         }
+
         #search-button {
-                background-color: $white;
-                width: 5%;
-                height: 3rem;
-                border: none;
-                outline: none;
+            background-color: $white;
+            width: 5%;
+            height: 3rem;
+            border: none;
+            outline: none;
         }
 
     }
 
+    
+    #adressWrap{
+        .accordion-header{
+            background-color: $row--even;
+            color: white;
+
+            &:active{
+                background-color: $row--active;  
+            }
+        }
+        .accordion-body{
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: $address--column;
+
+            &:focus{
+                background-color: $address--active
+            };
+            
+            .itemWrapper{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+        
+                .statusNt{
+                    height: 30px;
+                    width: 60px;
+                    background-color: $label--nt;
+                    text-align: center;
+                    padding-top: 5px;
+                }
+        
+                .statusOvk{
+                    height: 30px;
+                    width: 60px;
+                    background-color: $label--ovk;
+                    text-align: center;
+                    padding-top: 5px; 
+                }
+        
+                p{
+                    font-size: 0.8rem;
+                    font-weight: bold;
+                    color: white
+                }
+            }
+        };
+        
+        
+    }
+    
 }
 
-.test {
-    margin-top: 50px;
-    width: 500px;
-    height: 50vh;
+/**** Form ****/
+
+#formView {
+    width: 100%;
+    display: block
+}
+
+.mainWrapper{
+    border: 1px solid black;
+    min-height: 300px;
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 25px 25px 25px;
+    
+    .form-wrapper{
+        border: 1px solid black;
+        height: 180px;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        .label{
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size:medium;
+            font-weight: bold;
+            
+            input{
+                width: 65%;
+                height: 50px;
+            }
+        }
+    }
+
+    .buttons-wrapper{
+
+
+        .buttons{
+            display: flex;
+            justify-content: space-between;
+
+            button{
+                height: 50px;
+                width: 110px; 
+                border: none;
+                border-radius: 2px;
+                font-size: large;
+                font-weight: 900; 
+            }
+            
+            .btn-secondary{
+                background-color: $button--secondary;
+                color: #000
+            }
+
+            .btn-primary{
+                background-color: $button--primary;
+            }
+        }
+    }
+    
+}
+
+
+/**** responsive****/
+
+@media only screen and (max-width: $m){
+}
+
+@media only screen and (max-width: $sm){
+    header{
+        height: 220px;
+
+        h1{
+            font-size: 1.6rem;
+            font-weight:bolder;
+            width: 70%;
+        }
+
+        #button-wrapper{
+            display: flex;
+            flex-direction: column;
+            height: 110px;
+            justify-content: space-between;
+            align-items: center;
+
+            button{
+                height: 50px;
+                width: 100%;
+                border: none;
+                border-radius: 2px;
+                background-color: $button--secondary;
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+        }
+    }
 }

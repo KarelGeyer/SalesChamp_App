@@ -1,25 +1,31 @@
 import Backbone from "backbone"
+import Marionette from "backbone.marionette"
+import $ from "jquery"
 import headerView from "./views/HeaderView"
 import testView from "./views/TestView"
 import form from "./views/FormView"
 
 const Router = Backbone.Router.extend({
     routes: {
-        "" : "function",
-        "adress": "test"
+        "" : "mainScreen",
+        ":id": "formScreen",
+
     },
-    function: function(){
+    mainScreen(){
         console.log("router works")
-        $('#app').append(headerView.$el)
-        $('#app').append(testView.$el)
-
+        setTimeout(function(){
+        // $("#formView").hide() 
+        $(".results").hide()       
+        },500)  
+        // $(".results").show()   
     },
-    test: function(){
-        console.log("this should be adress")
-        form.render()
-        $('#app').append(headerView.$el)
-        $('#app').append(form.$el)
-
-    }
+    formScreen(id){
+        console.log(this)
+        $(".results").hide()
+        $("#formView").show()   
+    },
+    
 })
+
+
 export default Router
