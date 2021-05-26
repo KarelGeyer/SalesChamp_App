@@ -165,10 +165,13 @@ section {
 
 .mainWrapper{
 
-    min-height: 300px;
+    min-height: 450px;
     height: 70vh;
     width: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px;
     
     .form-wrapper{
 
@@ -230,8 +233,34 @@ section {
     .mainWrapper{
         width: 100%;
 
+        div{
+            width: 100%
+        }
         .form-wrapper{
-            width: 10%
+            width: 100%;
+            align-items: flex-start;
+        }
+        
+        .col.label{
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #name{
+            width: 100%
+        }
+
+        #e-mail{
+            width: 100%
+        }
+
+        .buttons {
+            height: 110px;
+            flex-direction: column-reverse;
+        }
+
+        button {
+            width: 100% !important
         }
     }
 }

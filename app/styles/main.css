@@ -11630,12 +11630,20 @@ section #adressWrap .accordion-body .itemWrapper p {
 }
 
 .mainWrapper {
-  min-height: 300px;
+  min-height: 450px;
   height: 70vh;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 25px;
 }
 
 .mainWrapper .form-wrapper {
@@ -11704,8 +11712,39 @@ section #adressWrap .accordion-body .itemWrapper p {
   .mainWrapper {
     width: 100%;
   }
+  .mainWrapper div {
+    width: 100%;
+  }
   .mainWrapper .form-wrapper {
-    width: 10%;
+    width: 100%;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .mainWrapper .col.label {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .mainWrapper #name {
+    width: 100%;
+  }
+  .mainWrapper #e-mail {
+    width: 100%;
+  }
+  .mainWrapper .buttons {
+    height: 110px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  .mainWrapper button {
+    width: 100% !important;
   }
 }
 
