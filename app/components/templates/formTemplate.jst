@@ -1,11 +1,11 @@
-    <div class="mainWrapper">
+    <form class="mainWrapper">
         <div class="form-wrapper">
             <div class="name-wrapper">
                 <div class="col label">
                     <label for="name" class="form-label" >
                         Name
                     </label>
-                    <input type="text" class="form-control name" id="name"/>
+                    <input type="text" class="form-control name" id="name" required="true"/>
                 </div>
             </div>
             <div class="email-wrapper">
@@ -13,14 +13,14 @@
                     <label for="e-mail" class="form-label" >
                         Email address
                     </label>
-                    <input type="email" class="form-control email" id="e-mail"/>
+                    <input type="email" class="form-control email" id="e-mail" required="true"/>
                 </div>
             </div>
         </div>
         <div class="buttons-wrapper">
             <div class="buttons">
                     <button class="btn btn-secondary">Back</button>
-                    <button class="btn btn-primary">Save</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
             </div>
         </div>
-    </div>
+    </form>

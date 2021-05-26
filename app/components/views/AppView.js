@@ -11,43 +11,24 @@ const AppView = View.extend({
     template,
     events: {
         "keyup #searchbarInput": "storeSearchValue",
-        "click #search-button": "getSearchvalue",
+        "click #search-button" : "filterData"
     },
-    storeSearchValue(e){
-        localStorage.setItem("search", e.target.value)
+    filterData(){
+        const searchTerm = $("#searchbarInput").val()
+        localStorage.setItem("search", searchTerm)
+        location.reload()
     },
-    getSearchvalue(searchResult){
-        searchResult = localStorage.getItem("search")
-        console.log(searchResult)
-      },
     initialize(){
-        if(a !== ""){
             this.adressCollectionView = new AdressCollectionView({
-                collection: this.collection
+                collection: this.getOption("collection")
             })
-        }else {
-            this.adressCollectionView = new AdressCollectionView({
-                collection: newCollection
-            })
-        }
-        const a = _.find(this.collection.models, data => {
-            return data.attributes.city = "Ploso Wetan"
-        })
-        // const NewCollection = Backbone.Collection.extend({
-            
-        // })
-        // const newCollection = new NewCollection({
-        //     collection: a
-        // })
-        // // console.log(this.collection)
-        // // console.log(a)
-        // console.log(newCollection.models)
+            this.listenTo(this.collection, "change", this.render)
     },
     regions: {
-        region: "#adressWrap"
+        adressWrap: "#adressWrap"
     },
     onRender(){
-        this.showChildView("region", this.adressCollectionView)
+        this.showChildView("adressWrap", this.adressCollectionView)
     }
 
 })

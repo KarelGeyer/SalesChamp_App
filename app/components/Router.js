@@ -14,10 +14,9 @@ const Router = Backbone.Router.extend({
     mainScreen(){
         console.log("router works")
         setTimeout(function(){
-        // $("#formView").hide() 
-        $(".results").hide()       
-        },500)  
-        // $(".results").show()   
+            $("#formView").hide()       
+        },100) 
+        $(".results").show()   
     },
     formScreen(id){
         console.log(this)

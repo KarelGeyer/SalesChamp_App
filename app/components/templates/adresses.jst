@@ -10,7 +10,7 @@
                 </button>
             </h3>
             <% if(status === "NT") {%> 
-                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+                <div class="accordion-collapse collapse show" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
                     <button type="button" class="accordion-body">
                         <div class="itemWrapper">
                             <%- number %> 
@@ -23,7 +23,7 @@
                     </button>
                 </div>
             <% } else if (status === "OVK") {%> 
-                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+                <div class="accordion-collapse collapse show" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
                     <button type="button" class="accordion-body">
                         <div class="itemWrapper">
                             <%- number %> 
@@ -36,13 +36,10 @@
                     </button>
                 </div>
             <% } else {%>
-                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+                <div class="accordion-collapse collapse show" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
                     <button type="button" class="accordion-body">
                         <div >
                             <%- number %> 
-                            <div>
-                                
-                            </div>
                         </div>
                     </button>
                 </div>

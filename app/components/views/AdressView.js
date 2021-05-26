@@ -40,7 +40,7 @@ const AddressView = View.extend({
         }
     },
     initialize(){
-        
+        this.listenTo(this.model, "change", this.render)
     } 
 
 })

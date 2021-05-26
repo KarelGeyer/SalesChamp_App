@@ -1,32 +1,12 @@
 import _ from "underscore"
-import Marionette from "backbone.marionette"
-import Backbone from "backbone"
+import {View} from "backbone.marionette"
+import {Model} from "backbone"
 import template from "../templates/formTemplate.jst"
-import testView from "../views/TestView"
 import Router from "../Router"
 
-const FormModel = Backbone.Model.extend({
-    url: 'https://introduction-api.do.saleschamp.io/introduction-api/items/address',
-    default: {
-        id: "",
-        status: "",
-        postalcode: "",
-        street: "",
-        number: "",
-        name: "",
-        email: "",
-        city: ""
-    },
-    parse: function(data){
-        return data.data
-    }
-})
-
-const formModel = new FormModel()
-
-const FormView = Marionette.View.extend({
+const FormView = View.extend({
     tagName: "div", 
-    model: formModel,
+    id: "formView",
     template,
     ui: {
         name: "#name",
@@ -36,33 +16,58 @@ const FormView = Marionette.View.extend({
     },
     events: {
         "click @ui.back": "goBack",
-        "click @ui.save": "patch"
+        "click @ui.save": "updateItem"
     },
-    patch: function(e){
-    
-        this.model.set("name", $("#name").val())
-        this.model.set("e-mail", $("#e-mail").val()) 
-        console.log(this.model)
-        const filteredUrl = _.each(Object.keys(this.model.attributes), function(item){
-            return item
+    updateItem(){
+        const router = new Router()
+        const id = localStorage.getItem("id")
+        const url = `https://introduction-api.do.saleschamp.io/introduction-api/items/address/${id}`
+        const data = {
+            name: $("#name").val(),
+            email: $("#e-mail").val(),
+            status: "OVK"
+        }
+        // ** Doesnt work, for some reason Backbone save method doesnt accept PATCH method */
+        this.model.save(data,{
+            patch: true,
+            url: url,
+            success: function(response){
+                console.log(response)
+            },
+            error: function(err){
+                console.log(err)
+                alert("something went wrong! Please try again later")
+            } 
         })
-        console.log(filteredUrl)
-        // this.model.save(this.model,{
-        //     success: function(res){
+        // data.name !== "" && data.email !== "" ?
+        // $.ajax({
+        //     url: url,
+        //     data: data,
+        //     type: "PATCH",
+        //     success(res){
         //         console.log(res)
+        //         console.log(url)
+        //         $("#name").val("")
+        //         $("#e-mail").val("")
+        //         router.navigate("/", {trigger: true})
+        //         setTimeout(function(){
+        //             location.reload()      
+        //         },300) 
         //     },
-        //     error: function(err){
+        //     error(err){
+        //         $("#name").val("")
+        //         $("#e-mail").val("")
         //         console.log(err)
-        //     } 
+        //     }
         // })
+        // :
+        // alert("you must fill out the form")
     },
-    goBack: function(){
+    goBack(){
         const router = new Router()
         router.navigate("/", {trigger: true})
-    }, 
-    
-    initialize: function(){
-        console.log()
+    },   
+    initialize(){
     }
 })
 
