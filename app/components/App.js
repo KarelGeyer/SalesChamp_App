@@ -1,6 +1,5 @@
 import Marionette from 'backbone.marionette';
-import HeaderView from "./views/HeaderView"
-import FormView from "./views/FormView"
+// import HeaderView from "./views/HeaderView"
 import $ from "jquery"
 import _ from 'underscore';
 import Router from "./Router"
@@ -31,11 +30,7 @@ export default Marionette.Application.extend({
   region: '#app',
 
   onStart() {
-    const headerView = new HeaderView({
-    model: model
-    })
-    headerView.render()
-    $('#app').append(headerView.$el)
+  
       data.fetch({
         success(res){
           console.log(res)
@@ -43,16 +38,9 @@ export default Marionette.Application.extend({
             collection: data,
             model: model
           })
-          const formView = new FormView({
-            model: model
-          })
-
          appView.render()
-         formView.render()
 
          $('#app').append(appView.$el)
-         $('#app').append(formView.$el)
-         $("#formView").hide()
         },
         error(){
           console.log(error)

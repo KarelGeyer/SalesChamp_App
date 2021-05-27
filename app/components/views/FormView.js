@@ -6,7 +6,7 @@ import Router from "../Router"
 
 const FormView = View.extend({
     tagName: "div", 
-    id: "formView",
+    id: "form",
     template,
     ui: {
         name: "#name",

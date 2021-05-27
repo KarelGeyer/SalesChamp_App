@@ -11479,7 +11479,6 @@ fieldset:disabled .btn {
 /**** General Styles ****/
 #app {
   width: 750px;
-  border: 1px solid black;
 }
 
 body {
@@ -11493,7 +11492,7 @@ body {
 }
 
 /**** Header ****/
-header {
+.header {
   height: 190px;
   background-color: #009cb8;
   display: -webkit-box;
@@ -11508,14 +11507,14 @@ header {
           justify-content: space-evenly;
 }
 
-header h1, header .h1 {
+.header h1, .header .h1 {
   padding-left: 18px;
   color: #fff;
   font-size: 2.5rem;
   font-weight: bold;
 }
 
-header div {
+.header div {
   -ms-flex-item-align: center;
       align-self: center;
   width: 95%;
@@ -11527,7 +11526,7 @@ header div {
           justify-content: space-between;
 }
 
-header button {
+.header button {
   height: 60px;
   width: 48%;
   border: none;
@@ -11538,7 +11537,7 @@ header button {
 }
 
 /**** Results ****/
-section #searchbar {
+#searchbar {
   height: 3rem;
   width: 100%;
   display: -webkit-box;
@@ -11553,14 +11552,14 @@ section #searchbar {
   padding: 0 15px 0 15px;
 }
 
-section #searchbar #searchbarInput {
+#searchbar #searchbarInput {
   border: none;
   outline: none;
   height: 90%;
   width: 95%;
 }
 
-section #searchbar #search-button {
+#searchbar #search-button {
   background-color: #fff;
   width: 5%;
   height: 3rem;
@@ -11568,27 +11567,27 @@ section #searchbar #search-button {
   outline: none;
 }
 
-section #adressWrap .accordion-header {
+#adressWrap .accordion-header {
   background-color: #ECECEC;
   color: white;
 }
 
-section #adressWrap .accordion-header:active {
+#adressWrap .accordion-header:active {
   background-color: #009CB8;
 }
 
-section #adressWrap .accordion-body {
+#adressWrap .accordion-body {
   width: 100%;
   border: none;
   outline: none;
   background-color: #FCFAED;
 }
 
-section #adressWrap .accordion-body:focus {
+#adressWrap .accordion-body:focus {
   background-color: #FFD800;
 }
 
-section #adressWrap .accordion-body .itemWrapper {
+#adressWrap .accordion-body .itemWrapper {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11601,7 +11600,7 @@ section #adressWrap .accordion-body .itemWrapper {
           align-items: center;
 }
 
-section #adressWrap .accordion-body .itemWrapper .statusNt {
+#adressWrap .accordion-body .itemWrapper .statusNt {
   height: 30px;
   width: 60px;
   background-color: #FB9449;
@@ -11609,7 +11608,7 @@ section #adressWrap .accordion-body .itemWrapper .statusNt {
   padding-top: 5px;
 }
 
-section #adressWrap .accordion-body .itemWrapper .statusOvk {
+#adressWrap .accordion-body .itemWrapper .statusOvk {
   height: 30px;
   width: 60px;
   background-color: #3AAA35;
@@ -11617,7 +11616,7 @@ section #adressWrap .accordion-body .itemWrapper .statusOvk {
   padding-top: 5px;
 }
 
-section #adressWrap .accordion-body .itemWrapper p {
+#adressWrap .accordion-body .itemWrapper p {
   font-size: 0.8rem;
   font-weight: bold;
   color: white;
@@ -11631,7 +11630,7 @@ section #adressWrap .accordion-body .itemWrapper p {
 
 .mainWrapper {
   min-height: 450px;
-  height: 70vh;
+  height: 74vh;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11711,6 +11710,7 @@ section #adressWrap .accordion-body .itemWrapper p {
 @media only screen and (max-width: 550px) {
   .mainWrapper {
     width: 100%;
+    padding: 10px;
   }
   .mainWrapper div {
     width: 100%;
@@ -11749,15 +11749,15 @@ section #adressWrap .accordion-body .itemWrapper p {
 }
 
 @media only screen and (max-width: 380px) {
-  header {
-    height: 220px;
+  .header {
+    height: 210px;
   }
-  header h1, header .h1 {
+  .header h1, .header .h1 {
     font-size: 1.6rem;
     font-weight: bolder;
     width: 70%;
   }
-  header #button-wrapper {
+  .header #button-wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -11773,9 +11773,9 @@ section #adressWrap .accordion-body .itemWrapper p {
         -ms-flex-align: center;
             align-items: center;
   }
-  header #button-wrapper button {
+  .header #button-wrapper button {
     height: 50px;
-    width: 100%;
+    width: 98%;
     border: none;
     border-radius: 2px;
     background-color: #EEE;

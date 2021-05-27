@@ -9,13 +9,19 @@ const AddressView = View.extend({
     events: {
         "click .accordion-body": "headingHandeler"
     },
+    triggers: {
+        "click .accordion-body": "handeler"
+    },
+    modelEvents: {
+
+    },
     headingHandeler(){
         /** Variables */
         const thisModelData = this.options.model.attributes
         const status = thisModelData.status
         const id = thisModelData.id
         const value = `${thisModelData.city}, ${thisModelData.street} ${thisModelData.number}`
-        
+
         /**Store Item in Local Storage*/
         localStorage.setItem("id", id)
         localStorage.setItem("status", status)
@@ -40,7 +46,7 @@ const AddressView = View.extend({
         }
     },
     initialize(){
-        this.listenTo(this.model, "change", this.render)
+       
     } 
 
 })

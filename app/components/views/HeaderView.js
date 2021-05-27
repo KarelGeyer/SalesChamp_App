@@ -14,7 +14,7 @@ const adress = new Adress()
 
 
 const HeaderView = View.extend({
-    tagName: "header",
+    tagName: "div",
     className: "header",
     template: template,
     events: {
@@ -31,15 +31,18 @@ const HeaderView = View.extend({
         const id = localStorage.getItem("id")
         const url = `https://introduction-api.do.saleschamp.io/introduction-api/items/address/${id}`
         const status = {
-            status: "NEW"
+            id: id, 
+            status: "NT"
         }
+        console.log(this)
+        this.model.set(status)
         this.model.save(status, {
             url: url,
             patch: true,
-            success(){
-                console.log(id)
-                // alert("adress was successfuly updated")
-                // location.reload()
+            success(res){
+                console.log(res)
+                alert("adress was successfuly updated")
+                
             },
             error(err){
                 alert(err)
@@ -47,8 +50,7 @@ const HeaderView = View.extend({
         }) 
     },
     initialize(){
-        this.render()
-        console.log(this.model)
+      
     } 
 })
 

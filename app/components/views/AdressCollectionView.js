@@ -8,14 +8,20 @@ const AdressCollectionView = CollectionView.extend({
 
     filter(child, index, collection){
         const search = localStorage.getItem("search")
-        console.log(search)
         if(search === "" || search === undefined ){
             return child
         } else {
             return child.attributes.street === search
         }
     },
+    childViewEvents: {
+        "handeler": "testFunction"
+    },
+    testFunction(childView){
+        console.log(childView)
+    },
     initialize(){
+        this.listenTo(this.collection, "change", this.render, this);
     },
 })
 
