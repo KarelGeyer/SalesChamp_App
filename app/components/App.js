@@ -1,5 +1,4 @@
 import Marionette from 'backbone.marionette';
-// import HeaderView from "./views/HeaderView"
 import $ from "jquery"
 import _ from 'underscore';
 import Router from "./Router"
@@ -19,7 +18,10 @@ const MainModel =  Model.extend({
     name: "",
     email: "",
     status: "",
-    street: ""
+    street: "",
+    city: "",
+    number: "",
+    search: ""
   }
 })
 
@@ -33,14 +35,12 @@ export default Marionette.Application.extend({
   
       data.fetch({
         success(res){
-          console.log(res)
           const appView = new AppView({
             collection: data,
             model: model
           })
-         appView.render()
-
-         $('#app').append(appView.$el)
+          appView.render()
+          $('#app').append(appView.$el)
         },
         error(){
           console.log(error)

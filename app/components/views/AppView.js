@@ -10,60 +10,76 @@ import template from "../templates/adressesWrapper.jst"
 const AppView = View.extend({
     el: "#app",
     template,
-    self: this,
+    ui: {
+        searchBar: "#searchbarInput",
+        searchButton: "#search-button",
+        form: "#formView"
+    },
     events: {
-        "keyup #searchbarInput": "storeSearchValue",
-        // "click #search-button" : "filterData"
-        "click #search-button" : "testFce"
+        "keyup @ui.searchBar": "onRender",
     },
     regions: {
         header: "#header",
         adresses: "#adressWrap",
         form: "#formView"
     },
-    // filterData(){
-    //     const searchTerm = $("#searchbarInput").val()
-    //     localStorage.setItem("search", searchTerm)
-    //     location.reload()
-    // },
-    collectionEvents: {
-        "change": (collection) => {
-            console.log(collection)
-            console.log("collection been changed")
-        }        
+    childViewEvents: {
+        "onClick": "goToForm",
+        "back": "goBackToMain",
+        "onSubmit": "submit"
     },
-    modelEvents: {
-        "change:status": "modelChange"
-        
-    },
-    modelChange() {
-        console.log("model changed")
-
-    },
-    initialize(){
-            // this.adressCollectionView = new AdressCollectionView({
-            //     collection: this.getOption("collection"),
-            //     model: this.getOption("model")
-            // })
-            this.headerView = new HeaderView({
-                model: this.getOption("model")
-            })
-            this.formView = new FormView({
-                model: this.getOption("model")
-            })            
-    },
-    onRender(){
-        this.showChildView("adresses", new AdressCollectionView({
-            collection: this.getOption("collection"),
-            model: this.model
-        }))
-        this.showChildView("header", this.headerView)
+    goToForm(){
+        this.detachChildView("adresses")
         this.showChildView("form", this.formView)
     },
-    testFce(){
-        
-        console.log(this.model)
-    }
+    goBackToMain(){
+        this.detachChildView("form")
+        this.showChildView("adresses", this.adressCollectionView)
+    },
+    submit(){
+        this.detachChildView("form")
+        this.showChildView("adresses", this.adressCollectionView)
+    },
+    initialize(){
+        const collection = this.getOption("collection")
+        const model = this.getOption("model")
+
+        this.headerView = new HeaderView({
+            model: model,
+            collection: collection
+        })
+        this.formView = new FormView({
+            model: model,
+            collection: collection
+        })   
+            
+    },
+    onRender(e){
+        const collection = this.getOption("collection")
+        const model = this.getOption("model")
+
+        const data = e.target ?
+            _.filter(collection.models, function(res){
+            const search = e.target.value
+            return res.attributes.street.toLowerCase().includes(search.toLowerCase())
+            })
+            : collection.models
+
+        const TestColl = Backbone.Collection.extend({})
+        const testColl = new TestColl()
+        testColl.set(data)
+
+        this.adressCollectionView = new AdressCollectionView({
+            collection: testColl.length === 0 ? collection : testColl,
+            model: model
+        })
+
+        this.showChildView("adresses", this.adressCollectionView)
+        this.showChildView("header", this.headerView)
+        this.showChildView("form", this.formView)
+        this.detachChildView("form")
+    },
 })
+
 
 export default AppView

@@ -2,7 +2,7 @@
 <div class="acordion adress-row" id="accordionSection"> 
         <div class="acordion-item ults">
             <h3 class="accordion-header">
-                <button type="button" class="accordion-button" 
+                <button type="button" class="accordion-button collapsed" 
                 type="button" 
                 data-bs-toggle="collapse" 
                 data-bs-target="#<%- status %><%- id %>">
@@ -10,7 +10,7 @@
                 </button>
             </h3>
             <% if(status === "NT") {%> 
-                <div class="accordion-collapse collapse show" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
                     <button type="button" class="accordion-body">
                         <div class="itemWrapper">
                             <%- number %> 
@@ -23,7 +23,7 @@
                     </button>
                 </div>
             <% } else if (status === "OVK") {%> 
-                <div class="accordion-collapse collapse show" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
                     <button type="button" class="accordion-body">
                         <div class="itemWrapper">
                             <%- number %> 
@@ -36,9 +36,9 @@
                     </button>
                 </div>
             <% } else {%>
-                <div class="accordion-collapse collapse show" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
                     <button type="button" class="accordion-body">
-                        <div >
+                        <div class="new">
                             <%- number %> 
                         </div>
                     </button>

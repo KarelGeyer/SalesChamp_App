@@ -1,9 +1,7 @@
 import Backbone from "backbone"
 import Marionette from "backbone.marionette"
 import $ from "jquery"
-import headerView from "./views/HeaderView"
-import testView from "./views/TestView"
-import form from "./views/FormView"
+
 
 const Router = Backbone.Router.extend({
     routes: {
@@ -11,17 +9,9 @@ const Router = Backbone.Router.extend({
         ":id": "formScreen",
 
     },
-    mainScreen(){
- 
-        setTimeout(function(){
-            $("#formView").hide()       
-        },1000) 
-        $("#adressWrap").show()   
+    mainScreen(){  
     },
-    formScreen(id){
-  
-        $("#adressWrap").hide()
-        $("#formView").show()   
+    formScreen(id){ 
     },
     
 })

@@ -1,6 +1,5 @@
 import _ from "underscore"
 import {View} from "backbone.marionette"
-import {Model} from "backbone"
 import template from "../templates/formTemplate.jst"
 import Router from "../Router"
 
@@ -16,52 +15,59 @@ const FormView = View.extend({
     },
     events: {
         "click @ui.back": "goBack",
-        "click @ui.save": "updateItem"
+        "submit form" : "submitForm",
+        "click @ui.name" : "clearName",
+        "click @ui.email" : "clearEmail",
     },
-    updateItem(){
+    triggers: {
+        "click @ui.back": "back",
+        "submit form" : "onSubmit",
+    },
+    modelEvents: {
+        change : "onModalChange"
+    },
+    onModalChange(){        
+        const attrs = this.model.attributes
+        attrs.name ? 
+            this.getUI("name").val(attrs.name)
+            : this.getUI("name").val("")
+        attrs.email ? 
+            this.getUI("email").val(attrs.email) 
+            : this.getUI("email").val("")
+        
+    },
+    submitForm(e){
+        e.preventDefault()
         const router = new Router()
-        const id = localStorage.getItem("id")
+        const name = this.getUI("name").val()
+        const email = this.getUI("email").val()
+        const id = this.model.attributes.id
+        const currentModel = this.collection.get(id)
         const url = `https://introduction-api.do.saleschamp.io/introduction-api/items/address/${id}`
         const data = {
-            name: $("#name").val(),
-            email: $("#e-mail").val(),
+            name: name,
+            email: email,
             status: "OVK"
         }
-        // ** Doesnt work, for some reason Backbone save method doesnt accept PATCH method */
+        
         this.model.save(data,{
             patch: true,
             url: url,
             success: function(response){
-                console.log(response)
+                currentModel.set(data)
+                router.navigate("/", {trigger: true})
             },
             error: function(err){
-                console.log(err)
                 alert("something went wrong! Please try again later")
             } 
         })
-        // data.name !== "" && data.email !== "" ?
-        // $.ajax({
-        //     url: url,
-        //     data: data,
-        //     type: "PATCH",
-        //     success(res){
-        //         console.log(res)
-        //         console.log(url)
-        //         $("#name").val("")
-        //         $("#e-mail").val("")
-        //         router.navigate("/", {trigger: true})
-        //         setTimeout(function(){
-        //             location.reload()      
-        //         },300) 
-        //     },
-        //     error(err){
-        //         $("#name").val("")
-        //         $("#e-mail").val("")
-        //         console.log(err)
-        //     }
-        // })
-        // :
-        // alert("you must fill out the form")
+        
+    },
+    clearName(){
+        this.getUI("name").val("")
+    },
+    clearEmail(){
+        this.getUI("email").val("")
     },
     goBack(){
         const router = new Router()

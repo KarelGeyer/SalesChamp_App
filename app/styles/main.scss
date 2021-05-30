@@ -6,7 +6,8 @@ $max-width: 800px;
 /**** Colors *****/
 $background--primary: #027489;
 $background--secondary: #009CB8;
-$row--even: #ECECEC;
+$row--even: #ffffff;
+$row--odd: #f0f0f0;
 $row--active: #009CB8;
 $address--column: #FCFAED;
 $address--active: #FFD800;
@@ -63,14 +64,22 @@ body {
         justify-content: space-between;
     }
 
-    button {
+    .header-button {
         height: 60px;
         width: 48%;
         border: none;
         border-radius: 5px;
-        background-color: $button--secondary;
         font-size: 1.5rem;
         font-weight: bold;
+    }
+    .disabled{
+        background-color: $button--disabled;
+        color: white
+    }
+
+    .active{
+        background-color: $button--primary;
+        color: white
     }
 }
 
@@ -103,54 +112,82 @@ body {
 
    
     #adressWrap{
-        .accordion-header{
-            background-color: $row--even;
-            color: white;
 
-            &:active{
-                background-color: $row--active;  
-            }
-        }
-        .accordion-body{
-            width: 100%;
-            border: none;
-            outline: none;
-            background-color: $address--column;
+        .adress-box {
 
-            &:focus{
-                background-color: $address--active
+            .accordion-button{
+               color:black;
+
+               
             };
-            
-            .itemWrapper{
+
+            .accordion-body{
                 width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-        
-                .statusNt{
-                    height: 30px;
-                    width: 60px;
-                    background-color: $label--nt;
-                    text-align: center;
-                    padding-top: 5px;
+                border: none;
+                outline: none;
+                background-color: $address--column;
+
+                    &:focus{
+                    background-color: $address--active
+                };
+
+                .itemWrapper{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                
+                    .statusNt{
+                        height: 30px;
+                        width: 60px;
+                        background-color: $label--nt;
+                        text-align: center;
+                        padding-top: 5px;
+                    }
+                
+                    .statusOvk{
+                        height: 30px;
+                        width: 60px;
+                        background-color: $label--ovk;
+                        text-align: center;
+                        padding-top: 5px; 
+                    }
+                
+                    p{
+                        font-size: 0.8rem;
+                        font-weight: bold;
+                        color: white
+                    }
+
                 }
-        
-                .statusOvk{
-                    height: 30px;
-                    width: 60px;
-                    background-color: $label--ovk;
-                    text-align: center;
-                    padding-top: 5px; 
-                }
-        
-                p{
-                    font-size: 0.8rem;
-                    font-weight: bold;
-                    color: white
+                
+                .new {
+                    text-align: start
                 }
             }
+            &:nth-child(even){
+                .accordion-button{
+                    background-color: $row--even;
+
+                    &:focus{
+                        color: white;
+                        background-color: $row--active;
+                        border: none
+                    }
+                };
+            }
+            &:nth-child(odd){
+                .accordion-button{
+                    background-color: $row--odd;
+                    
+                    &:focus{
+                        color: white;
+                        background-color: $row--active;
+                        border: none
+                    }
+                };
+            }
         }
-        
     }
     
 
@@ -290,6 +327,8 @@ body {
                 background-color: $button--secondary;
                 font-size: 1.5rem;
                 font-weight: bold;
+
+                
             }
         }
     }

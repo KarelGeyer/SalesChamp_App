@@ -11526,14 +11526,23 @@ body {
           justify-content: space-between;
 }
 
-.header button {
+.header .header-button {
   height: 60px;
   width: 48%;
   border: none;
   border-radius: 5px;
-  background-color: #EEE;
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.header .disabled {
+  background-color: #999999;
+  color: white;
+}
+
+.header .active {
+  background-color: #027489;
+  color: white;
 }
 
 /**** Results ****/
@@ -11567,27 +11576,22 @@ body {
   outline: none;
 }
 
-#adressWrap .accordion-header {
-  background-color: #ECECEC;
-  color: white;
+#adressWrap .adress-box .accordion-button {
+  color: black;
 }
 
-#adressWrap .accordion-header:active {
-  background-color: #009CB8;
-}
-
-#adressWrap .accordion-body {
+#adressWrap .adress-box .accordion-body {
   width: 100%;
   border: none;
   outline: none;
   background-color: #FCFAED;
 }
 
-#adressWrap .accordion-body:focus {
+#adressWrap .adress-box .accordion-body:focus {
   background-color: #FFD800;
 }
 
-#adressWrap .accordion-body .itemWrapper {
+#adressWrap .adress-box .accordion-body .itemWrapper {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11600,7 +11604,7 @@ body {
           align-items: center;
 }
 
-#adressWrap .accordion-body .itemWrapper .statusNt {
+#adressWrap .adress-box .accordion-body .itemWrapper .statusNt {
   height: 30px;
   width: 60px;
   background-color: #FB9449;
@@ -11608,7 +11612,7 @@ body {
   padding-top: 5px;
 }
 
-#adressWrap .accordion-body .itemWrapper .statusOvk {
+#adressWrap .adress-box .accordion-body .itemWrapper .statusOvk {
   height: 30px;
   width: 60px;
   background-color: #3AAA35;
@@ -11616,10 +11620,34 @@ body {
   padding-top: 5px;
 }
 
-#adressWrap .accordion-body .itemWrapper p {
+#adressWrap .adress-box .accordion-body .itemWrapper p {
   font-size: 0.8rem;
   font-weight: bold;
   color: white;
+}
+
+#adressWrap .adress-box .accordion-body .new {
+  text-align: start;
+}
+
+#adressWrap .adress-box:nth-child(even) .accordion-button {
+  background-color: #ffffff;
+}
+
+#adressWrap .adress-box:nth-child(even) .accordion-button:focus {
+  color: white;
+  background-color: #009CB8;
+  border: none;
+}
+
+#adressWrap .adress-box:nth-child(odd) .accordion-button {
+  background-color: #f0f0f0;
+}
+
+#adressWrap .adress-box:nth-child(odd) .accordion-button:focus {
+  color: white;
+  background-color: #009CB8;
+  border: none;
 }
 
 /**** Form ****/
