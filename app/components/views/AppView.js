@@ -52,7 +52,6 @@ const AppView = View.extend({
             model: model,
             collection: collection
         })   
-            
     },
     onRender(e){
         const collection = this.getOption("collection")
@@ -65,12 +64,12 @@ const AppView = View.extend({
             })
             : collection.models
 
-        const TestColl = Backbone.Collection.extend({})
-        const testColl = new TestColl()
-        testColl.set(data)
+        const FilteredCollection = Backbone.Collection.extend({})
+        const filteredCollection = new FilteredCollection()
+        filteredCollection.set(data)
 
         this.adressCollectionView = new AdressCollectionView({
-            collection: testColl.length === 0 ? collection : testColl,
+            collection: filteredCollection.length === 0 ? collection : filteredCollection,
             model: model
         })
 
@@ -78,6 +77,7 @@ const AppView = View.extend({
         this.showChildView("header", this.headerView)
         this.showChildView("form", this.formView)
         this.detachChildView("form")
+
     },
 })
 

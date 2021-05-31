@@ -53,11 +53,11 @@ const FormView = View.extend({
         this.model.save(data,{
             patch: true,
             url: url,
-            success: function(response){
+            success: function(){
                 currentModel.set(data)
                 router.navigate("/", {trigger: true})
             },
-            error: function(err){
+            error: function(){
                 alert("something went wrong! Please try again later")
             } 
         })

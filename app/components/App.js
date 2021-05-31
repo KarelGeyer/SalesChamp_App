@@ -50,9 +50,5 @@ export default Marionette.Application.extend({
      
   Backbone.history.start()   
   },
-  
-  initialize: function(){
-    this.router = new Router()
-  } 
 });
 

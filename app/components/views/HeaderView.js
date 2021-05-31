@@ -39,16 +39,14 @@ const HeaderView = View.extend({
         } else if (status === "NT"){
             ovk.addClass("ovk disabled").addClass("active")
             nt.removeClass("nt active").addClass("disabled")
-        } else if (status === ""){
-            null
         } else {
             ovk.addClass("ovk disabled").addClass("active")
             nt.addClass("nt disabled").addClass("active")
         }
     },
     route(){
-        const dynamicRoute = this.getUI("header")[0].innerText
-        const route = "#/" + dynamicRoute
+        const routeName = this.getUI("header")[0].innerText
+        const route = "#/" + routeName
         const router = new Router()
         router.navigate(route, {trigger: true, replace: true})
     },
@@ -60,7 +58,9 @@ const HeaderView = View.extend({
             status: "NT"
         }
         const currentModel = this.collection.get(id)
-        this.model.save(status, {
+        id === "" ?
+        alert("you must first choose the adress to update")
+        : this.model.save(status, {
             url: url,
             patch: true,
             success(res){
