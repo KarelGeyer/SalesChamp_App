@@ -1,7 +1,6 @@
 import _ from "underscore"
 import {View} from "backbone.marionette"
 import template from "../templates/formTemplate.jst"
-import Router from "../Router"
 
 const FormView = View.extend({
     tagName: "div", 
@@ -19,10 +18,6 @@ const FormView = View.extend({
         "click @ui.name" : "clearName",
         "click @ui.email" : "clearEmail",
     },
-    triggers: {
-        "click @ui.back": "back",
-        "submit form" : "onSubmit",
-    },
     modelEvents: {
         change : "onModalChange"
     },
@@ -38,7 +33,6 @@ const FormView = View.extend({
     },
     submitForm(e){
         e.preventDefault()
-        const router = new Router()
         const name = this.getUI("name").val()
         const email = this.getUI("email").val()
         const id = this.model.attributes.id
@@ -55,7 +49,7 @@ const FormView = View.extend({
             url: url,
             success: function(){
                 currentModel.set(data)
-                router.navigate("/", {trigger: true})
+                Backbone.history.navigate("/", {trigger: true})
             },
             error: function(){
                 alert("something went wrong! Please try again later")
@@ -70,8 +64,7 @@ const FormView = View.extend({
         this.getUI("email").val("")
     },
     goBack(){
-        const router = new Router()
-        router.navigate("/", {trigger: true})
+        Backbone.history.navigate("/", {trigger: true})
     },   
     initialize(){
     }

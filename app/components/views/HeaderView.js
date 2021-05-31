@@ -1,7 +1,7 @@
 import _ from "underscore"
 import {View} from "backbone.marionette"
 import template from "../templates/headerTemplate.jst"
-import Router from "../Router"
+import Backbone from "backbone"
 
 
 const HeaderView = View.extend({
@@ -16,9 +16,6 @@ const HeaderView = View.extend({
     events: {
         "click @ui.ovk": "route",
         "click @ui.nt": "updateItem",
-    },
-    triggers: {
-        "click @ui.ovk": "onClick"
     },
     modelEvents: {
         change: "onModelChange"
@@ -45,10 +42,13 @@ const HeaderView = View.extend({
         }
     },
     route(){
+        const id = this.model.attributes.id
         const routeName = this.getUI("header")[0].innerText
         const route = "#/" + routeName
-        const router = new Router()
-        router.navigate(route, {trigger: true, replace: true})
+
+        id === "" ?
+        alert("you must first choose the adress to update")
+        : Backbone.history.navigate(route, {trigger: true})
     },
     updateItem(){
         const id = this.model.attributes.id

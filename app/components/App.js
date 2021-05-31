@@ -1,7 +1,6 @@
 import Marionette from 'backbone.marionette';
 import $ from "jquery"
 import _ from 'underscore';
-import Router from "./Router"
 import {Collection, Model} from 'backbone';
 import AppView from "./views/AppView"
 
@@ -32,15 +31,40 @@ export default Marionette.Application.extend({
   region: '#app',
 
   onStart() {
-  
+
+    const Controller = Marionette.Object.extend({
+      initialize(){
+        const appView = new AppView({
+          collection: data,
+          model: model
+        })
+        appView.render()
+        $('#app').append(appView.$el)
+        this.options.appView = appView
+        console.log(this)
+      },
+      mainScreen(){
+        const appView = this.getOption("appView")
+        appView.triggerMethod("show:adresses")
+      },
+      formScreen(id){
+        const appView = this.getOption("appView")
+        appView.triggerMethod("show:form")
+      }
+    })
+
+    const RouterTest = Marionette.AppRouter.extend({
+      controller: new Controller(),
+      appRoutes: {
+          "" : "mainScreen",
+          ":id": "formScreen",
+      },    
+    })
+      
       data.fetch({
-        success(res){
-          const appView = new AppView({
-            collection: data,
-            model: model
+        success(res){         
+          const routerTest = new RouterTest({
           })
-          appView.render()
-          $('#app').append(appView.$el)
         },
         error(){
           console.log(error)

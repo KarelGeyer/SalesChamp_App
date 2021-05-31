@@ -6,7 +6,6 @@ import FormView from "./FormView"
 import template from "../templates/adressesWrapper.jst"
 
 
-
 const AppView = View.extend({
     el: "#app",
     template,
@@ -25,20 +24,14 @@ const AppView = View.extend({
     },
     childViewEvents: {
         "onClick": "goToForm",
-        "back": "goBackToMain",
-        "onSubmit": "submit"
     },
-    goToForm(){
+    onShowAdresses(){
+        this.detachChildView("form")
+        this.showChildView("adresses", this.adressCollectionView)
+    },
+    onShowForm(){
         this.detachChildView("adresses")
         this.showChildView("form", this.formView)
-    },
-    goBackToMain(){
-        this.detachChildView("form")
-        this.showChildView("adresses", this.adressCollectionView)
-    },
-    submit(){
-        this.detachChildView("form")
-        this.showChildView("adresses", this.adressCollectionView)
     },
     initialize(){
         const collection = this.getOption("collection")
@@ -51,7 +44,8 @@ const AppView = View.extend({
         this.formView = new FormView({
             model: model,
             collection: collection
-        })   
+        })
+        this.formView.render()   
     },
     onRender(e){
         const collection = this.getOption("collection")
@@ -75,9 +69,6 @@ const AppView = View.extend({
 
         this.showChildView("adresses", this.adressCollectionView)
         this.showChildView("header", this.headerView)
-        this.showChildView("form", this.formView)
-        this.detachChildView("form")
-
     },
 })
 
