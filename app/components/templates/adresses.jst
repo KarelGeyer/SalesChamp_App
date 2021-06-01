@@ -1,19 +1,18 @@
-
 <div class="acordion adress-row" id="accordionSection"> 
         <div class="acordion-item ults">
             <h3 class="accordion-header">
                 <button type="button" class="accordion-button collapsed" 
                 type="button" 
                 data-bs-toggle="collapse" 
-                data-bs-target="#<%- status %><%- id %>">
-                    <%- city %>, <%- street %>  
+                data-bs-target="#<%- data.status %><%- data.id %>">
+                  <%- data.city %>, <%- data.street %>
                 </button>
             </h3>
-            <% if(status === "NT") {%> 
-                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+            <% if(data.status === "NT") {%> 
+                <div class="accordion-collapse collapse" id="<%- data.status %><%- data.id %>" data-bs-parent="#accordionSection">
                     <button type="button" class="accordion-body">
                         <div class="itemWrapper">
-                            <%- number %> 
+                            <%- data.number %> 
                             <div class="statusNt">
                                 <p>
                                     NT
@@ -22,11 +21,11 @@
                         </div>
                     </button>
                 </div>
-            <% } else if (status === "OVK") {%> 
-                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+            <% } else if (data.status === "OVK") {%> 
+                <div class="accordion-collapse collapse" id="<%- data.status %><%- data.id %>" data-bs-parent="#accordionSection">
                     <button type="button" class="accordion-body">
                         <div class="itemWrapper">
-                            <%- number %> 
+                            <%- data.number %> 
                             <div class="statusOvk">
                                 <p>
                                     OVK
@@ -36,10 +35,10 @@
                     </button>
                 </div>
             <% } else {%>
-                <div class="accordion-collapse collapse" id="<%- status %><%- id %>" data-bs-parent="#accordionSection">
+                <div class="accordion-collapse collapse" id="<%- data.status %><%-data.id %>" data-bs-parent="#accordionSection">
                     <button type="button" class="accordion-body">
                         <div class="new">
-                            <%- number %> 
+                            <%- data.number %> 
                         </div>
                     </button>
                 </div>

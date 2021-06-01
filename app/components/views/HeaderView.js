@@ -41,6 +41,9 @@ const HeaderView = View.extend({
             nt.addClass("nt disabled").addClass("active")
         }
     },
+    onCollectionChange(){
+        console.log("changed")
+    },
     route(){
         const id = this.model.attributes.id
         const routeName = this.getUI("header")[0].innerText
@@ -51,20 +54,26 @@ const HeaderView = View.extend({
         : Backbone.history.navigate(route, {trigger: true})
     },
     updateItem(){
-        const id = this.model.attributes.id
+        const attrs = this.model.attributes
+        const id = attrs.id
         const url = `https://introduction-api.do.saleschamp.io/introduction-api/items/address/${id}`
         const status = {
             id: id, 
             status: "NT"
         }
-        const currentModel = this.collection.get(id)
+        const name = `${attrs.city}, ${attrs.street}`
+        const filteredCollection = this.collection.findWhere({name : name})
+        const currentModel = filteredCollection ?  filteredCollection.attributes.data[0] : null
+
         id === "" ?
         alert("you must first choose the adress to update")
         : this.model.save(status, {
             url: url,
             patch: true,
             success(res){
-                currentModel.set(status)               
+                currentModel.set(status)
+                filteredCollection.set({name: name})
+                currentModel.render           
             },
             error(err){
                 alert(err)

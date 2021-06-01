@@ -10,12 +10,11 @@ const AdressCollectionView = CollectionView.extend({
         "handeler": "modelUpdate"
     },
     modelUpdate(child) {
-        const attrs = child.model.attributes
+        const attrs = child.model.attributes.data[0].attributes
         this.model.set(attrs)
     },
-    initialize(child){
+    initialize(){
         this.listenTo(this.collection, "change", this.render);
-        console.log(child)
     },
 })
 

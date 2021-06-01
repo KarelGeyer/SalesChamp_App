@@ -39,7 +39,6 @@ const AppView = View.extend({
     initialize(){
         const collection = this.getOption("collection")
         const model = this.getOption("model")
-        console.log(collection)
         this.headerView = new HeaderView({
             model: model,
             collection: collection
@@ -57,11 +56,11 @@ const AppView = View.extend({
         const data = e.target ?
             _.filter(collection.models, function(res){
             const search = e.target.value
-            return res.attributes.street.toLowerCase().includes(search.toLowerCase())
+            return res.attributes.name.toLowerCase().includes(search.toLowerCase())
             })
             : null
 
-        const FilteredCollection = Backbone.Collection.extend({})
+            const FilteredCollection = Backbone.Collection.extend({})
         const filteredCollection = new FilteredCollection()
         filteredCollection.set(data)
         

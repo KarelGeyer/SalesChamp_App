@@ -38,16 +38,15 @@ export default Marionette.Application.extend({
         const Controller = Marionette.Object.extend({
           initialize(){
             const filteredData = _.groupBy(data.models, data => 
-             `${data.attributes.city}, ${data.attributes.street}`)
+              `${data.attributes.city}, ${data.attributes.street}`)
 
             const map = _.map(filteredData, (data, name) => ({name, data}))  
-            
+
             const TestCol = Backbone.Collection.extend({})
             const testCol = new TestCol(map)
-
-
+            
             const appView = new AppView({
-            collection: data,
+            collection: testCol,
               model: model
             })
             appView.render()
@@ -71,11 +70,6 @@ export default Marionette.Application.extend({
               ":id": "formScreen",
           },    
         })
-
-
-
-
-
         const routerTest = new RouterTest({
         })
       },
