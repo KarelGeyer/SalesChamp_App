@@ -13,8 +13,9 @@ const AdressCollectionView = CollectionView.extend({
         const attrs = child.model.attributes
         this.model.set(attrs)
     },
-    initialize(){
+    initialize(child){
         this.listenTo(this.collection, "change", this.render);
+        console.log(child)
     },
 })
 

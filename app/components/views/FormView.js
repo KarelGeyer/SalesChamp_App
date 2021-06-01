@@ -10,7 +10,7 @@ const FormView = View.extend({
         name: "#name",
         email: "#e-mail",
         back: ".btn-secondary",
-        save: ".btn-primary"
+        save: ".btn-primary",
     },
     events: {
         "click @ui.back": "goBack",
@@ -29,7 +29,6 @@ const FormView = View.extend({
         attrs.email ? 
             this.getUI("email").val(attrs.email) 
             : this.getUI("email").val("")
-        
     },
     submitForm(e){
         e.preventDefault()
@@ -43,7 +42,6 @@ const FormView = View.extend({
             email: email,
             status: "OVK"
         }
-        
         this.model.save(data,{
             patch: true,
             url: url,
@@ -54,16 +52,26 @@ const FormView = View.extend({
             error: function(){
                 alert("something went wrong! Please try again later")
             } 
-        })
-        
+        })   
     },
     clearName(){
-        this.getUI("name").val("")
+        const attrs = this.model.attributes
+        this.getUI("name").val() === attrs.name ? 
+        this.getUI("name").val("") : null
     },
     clearEmail(){
-        this.getUI("email").val("")
+        const attrs = this.model.attributes
+        this.getUI("email").val() === attrs.email ? 
+        this.getUI("email").val("") : null
     },
     goBack(){
+        const attrs = this.model.attributes
+        attrs.name ? 
+            this.getUI("name").val(attrs.name)
+            : this.getUI("name").val("")
+        attrs.email ? 
+            this.getUI("email").val(attrs.email) 
+            : this.getUI("email").val("")
         Backbone.history.navigate("/", {trigger: true})
     },   
     initialize(){

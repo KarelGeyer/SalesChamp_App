@@ -12,6 +12,7 @@ const AppView = View.extend({
     ui: {
         searchBar: "#searchbarInput",
         searchButton: "#search-button",
+        searchContainer: "#searchbar",
         form: "#formView"
     },
     events: {
@@ -28,15 +29,17 @@ const AppView = View.extend({
     onShowAdresses(){
         this.detachChildView("form")
         this.showChildView("adresses", this.adressCollectionView)
+        this.getUI("searchContainer").show()
     },
     onShowForm(){
         this.detachChildView("adresses")
         this.showChildView("form", this.formView)
+        this.getUI("searchContainer").hide()
     },
     initialize(){
         const collection = this.getOption("collection")
         const model = this.getOption("model")
-
+        console.log(collection)
         this.headerView = new HeaderView({
             model: model,
             collection: collection
@@ -56,14 +59,16 @@ const AppView = View.extend({
             const search = e.target.value
             return res.attributes.street.toLowerCase().includes(search.toLowerCase())
             })
-            : collection.models
+            : null
 
         const FilteredCollection = Backbone.Collection.extend({})
         const filteredCollection = new FilteredCollection()
         filteredCollection.set(data)
+        
+        const search = e.target ? e.target.value : null
 
         this.adressCollectionView = new AdressCollectionView({
-            collection: filteredCollection.length === 0 ? collection : filteredCollection,
+            collection: search === null ? collection : filteredCollection,
             model: model
         })
 

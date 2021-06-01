@@ -1,7 +1,7 @@
 import Marionette from 'backbone.marionette';
 import $ from "jquery"
 import _ from 'underscore';
-import {Collection, Model} from 'backbone';
+import Backbone, {Collection, Model} from 'backbone';
 import AppView from "./views/AppView"
 
 const MainCollection = Collection.extend({
@@ -31,45 +31,58 @@ export default Marionette.Application.extend({
   region: '#app',
 
   onStart() {
+      
+    data.fetch({
+      success(res){  
 
-    const Controller = Marionette.Object.extend({
-      initialize(){
-        const appView = new AppView({
-          collection: data,
-          model: model
+        const Controller = Marionette.Object.extend({
+          initialize(){
+            const filteredData = _.groupBy(data.models, data => 
+             `${data.attributes.city}, ${data.attributes.street}`)
+
+            const map = _.map(filteredData, (data, name) => ({name, data}))  
+            
+            const TestCol = Backbone.Collection.extend({})
+            const testCol = new TestCol(map)
+
+
+            const appView = new AppView({
+            collection: data,
+              model: model
+            })
+            appView.render()
+            $('#app').append(appView.$el)
+            this.options.appView = appView
+          },
+          mainScreen(){
+            const appView = this.getOption("appView")
+            appView.triggerMethod("show:adresses")
+          },
+          formScreen(id){
+            const appView = this.getOption("appView")
+            appView.triggerMethod("show:form")
+          }
         })
-        appView.render()
-        $('#app').append(appView.$el)
-        this.options.appView = appView
-        console.log(this)
+    
+        const RouterTest = Marionette.AppRouter.extend({
+          controller: new Controller(),
+          appRoutes: {
+              "" : "mainScreen",
+              ":id": "formScreen",
+          },    
+        })
+
+
+
+
+
+        const routerTest = new RouterTest({
+        })
       },
-      mainScreen(){
-        const appView = this.getOption("appView")
-        appView.triggerMethod("show:adresses")
-      },
-      formScreen(id){
-        const appView = this.getOption("appView")
-        appView.triggerMethod("show:form")
+      error(){
+        console.log(error)
       }
     })
-
-    const RouterTest = Marionette.AppRouter.extend({
-      controller: new Controller(),
-      appRoutes: {
-          "" : "mainScreen",
-          ":id": "formScreen",
-      },    
-    })
-      
-      data.fetch({
-        success(res){         
-          const routerTest = new RouterTest({
-          })
-        },
-        error(){
-          console.log(error)
-        }
-      })
     
      
   Backbone.history.start()   

@@ -7,12 +7,14 @@ const AddressView = View.extend({
     tagName: "div",
     className: "adress-box",
     template,
+    
     ui: {
         item: ".accordion-body"
     },
     triggers: {
         "click @ui.item": "handeler"
     },
+    
 })
 
 export default AddressView
